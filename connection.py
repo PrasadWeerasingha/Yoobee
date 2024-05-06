@@ -14,8 +14,6 @@ class Connection:
         except sqlite3.Error as e:
             print(f"Error connecting to SQLite DB: {e}")
 
-
-
     def close(self):
         if self.conn:
             self.conn.close()

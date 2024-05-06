@@ -1,5 +1,6 @@
 
 import sqlite3
+
 class Vehicle:
     def __init__(self,connection, id, brand, type, makeYear, price_per_Week,available,reg_Number):
         self.id = id
@@ -48,6 +49,7 @@ class Vehicle:
     def add_record(self, connection, vehicle):
         try:
             #self.connection.connect()
+            #self.conn = sqlite3.connect(self.db_file)
             cursor = self.connection.cursor
             if isinstance(vehicle, Car):
                 cursor.execute("INSERT INTO vehicles (id,brand,type,makeYear,doors,price_Per_Week,avalability,reg_Number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
@@ -55,7 +57,7 @@ class Vehicle:
             elif isinstance(vehicle, Dump_Truck):
                 self.connection.cursor.execute("INSERT INTO vehicles (id,brand,type,makeYear,price_Per_Week,avalability,reg_Number,bed_length) VALUES (?, ?, ?, ?, ?,?, ?, ?)",
                                (vehicle.id, vehicle.brand, "Dump_Truck", vehicle.makeYear,vehicle.price_per_Week,vehicle.available,vehicle.reg_Number,vehicle.bed_length))
-                conn.co
+            self.connection.conn.commit()
             print("Record added successfully.")
         except sqlite3.Error as e:
             print(f"Error adding record: {e}")
